@@ -1,5 +1,5 @@
 package bean;
-// Generated 01/12/2023 16:33:26 by Hibernate Tools 4.3.1
+// Generated 08/12/2023 09:35:32 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -36,15 +36,13 @@ public class VendedorEbg  implements java.io.Serializable {
     }
 
 	
-    public VendedorEbg(int idvendedorEbg, String nomeEbg, String cpfEbg, String celularEbg, Date dataexpedienteEbg, double comissaoEbg) {
+    public VendedorEbg(int idvendedorEbg, String nomeEbg, String cpfEbg, String celularEbg, Date dataexpedienteEbg) {
         this.idvendedorEbg = idvendedorEbg;
         this.nomeEbg = nomeEbg;
         this.cpfEbg = cpfEbg;
         this.celularEbg = celularEbg;
         this.dataexpedienteEbg = dataexpedienteEbg;
-        this.comissaoEbg = comissaoEbg;
     }
-    
      @Id 
 
     

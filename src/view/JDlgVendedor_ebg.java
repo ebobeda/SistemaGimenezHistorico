@@ -121,6 +121,8 @@ public class JDlgVendedor_ebg extends javax.swing.JDialog {
         incluindo = true;
         jDlgVendedorNovoIA.setTitle("Incluir");
         jDlgVendedorNovoIA.setVisible(true);
+        List lista = vendedor_DAO.listAll();
+        vendedorControle_ebg.setList(lista);
     }//GEN-LAST:event_jBtnIncluir_ebgActionPerformed
 
     private void jBtnAlterar_ebgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterar_ebgActionPerformed

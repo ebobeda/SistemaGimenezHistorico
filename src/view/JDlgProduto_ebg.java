@@ -123,7 +123,8 @@ public class JDlgProduto_ebg extends javax.swing.JDialog {
         incluindo = true;
         jDlgProdutoNovoIA.setTitle("Incluir");
         jDlgProdutoNovoIA.setVisible(true);
-        
+        List lista = produto_DAO.listAll();
+        produtoControle_ebg.setList(lista);
     }//GEN-LAST:event_jBtnIncluir_ebgActionPerformed
 
     private void jBtnAlterar_ebgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterar_ebgActionPerformed

@@ -1,5 +1,5 @@
 package bean;
-// Generated 01/12/2023 16:33:26 by Hibernate Tools 4.3.1
+// Generated 08/12/2023 09:35:32 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -24,7 +24,7 @@ public class ProdutoEbg  implements java.io.Serializable {
 
      private int idprodutoEbg;
      private double valorunitEbg;
-     private int saborEbg;
+     private String saborEbg;
      private String unidadeEbg;
      private int massaEbg;
      private int modoEbg;
@@ -35,9 +35,8 @@ public class ProdutoEbg  implements java.io.Serializable {
     }
 
 	
-    public ProdutoEbg(int idprodutoEbg,double valorunitEbg, int saborEbg, String unidadeEbg, int massaEbg, int modoEbg, int tamanhoEbg, int retirarEbg) {
+    public ProdutoEbg(int idprodutoEbg, String saborEbg, String unidadeEbg, int massaEbg, int modoEbg, int tamanhoEbg, int retirarEbg) {
         this.idprodutoEbg = idprodutoEbg;
-        this.valorunitEbg = valorunitEbg;
         this.saborEbg = saborEbg;
         this.unidadeEbg = unidadeEbg;
         this.massaEbg = massaEbg;
@@ -45,6 +44,7 @@ public class ProdutoEbg  implements java.io.Serializable {
         this.tamanhoEbg = tamanhoEbg;
         this.retirarEbg = retirarEbg;
     }
+   
      @Id 
 
     
@@ -68,12 +68,12 @@ public class ProdutoEbg  implements java.io.Serializable {
     }
 
     
-    @Column(name="sabor_ebg", nullable=false)
-    public int getSaborEbg() {
+    @Column(name="sabor_ebg", nullable=false, length=80)
+    public String getSaborEbg() {
         return this.saborEbg;
     }
     
-    public void setSaborEbg(int saborEbg) {
+    public void setSaborEbg(String saborEbg) {
         this.saborEbg = saborEbg;
     }
 
@@ -126,7 +126,20 @@ public class ProdutoEbg  implements java.io.Serializable {
     public void setRetirarEbg(int retirarEbg) {
         this.retirarEbg = retirarEbg;
     }
-
+    @Override
+     public String toString() {
+    return saborEbg;
+}
+ @Override
+      public boolean equals (Object object){
+      if(object instanceof ProdutoEbg){
+      ProdutoEbg produtoEbg = (ProdutoEbg) object;
+        if(this.getIdprodutoEbg()== produtoEbg.getIdprodutoEbg())
+            return true;
+                }         
+                return false;
+            }
+         
 }
 
 

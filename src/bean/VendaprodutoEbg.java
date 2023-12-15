@@ -1,5 +1,5 @@
 package bean;
-// Generated 01/12/2023 16:33:26 by Hibernate Tools 4.3.1
+// Generated 08/12/2023 09:35:32 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -32,15 +32,13 @@ public class VendaprodutoEbg  implements java.io.Serializable {
     }
 
 	
-    public VendaprodutoEbg(int idvendaprodutoEbg, ProdutoEbg produtoEbg, VendaEbg vendaEbg, VendedorEbg vendedorEbg, int quantidadeEbg, double valorunitEbg) {
+    public VendaprodutoEbg(int idvendaprodutoEbg, ProdutoEbg produtoEbg, VendaEbg vendaEbg, VendedorEbg vendedorEbg, int quantidadeEbg) {
         this.idvendaprodutoEbg = idvendaprodutoEbg;
         this.produtoEbg = produtoEbg;
         this.vendaEbg = vendaEbg;
         this.vendedorEbg = vendedorEbg;
         this.quantidadeEbg = quantidadeEbg;
-        this.valorunitEbg = valorunitEbg;
     }
-   
      @Id 
 
     

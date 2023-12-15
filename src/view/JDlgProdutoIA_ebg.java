@@ -35,7 +35,7 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
         
         produtoEbg.setIdprodutoEbg(Util_ebg.strInt(jTxtCodigo_ebg.getText()));
         produtoEbg.setValorunitEbg(jCboValorunit_ebg.getSelectedIndex());
-        produtoEbg.setSaborEbg(jCboSabor_ebg.getSelectedIndex());
+        produtoEbg.setSaborEbg(jTxtSabor_ebg.getText());
         produtoEbg.setUnidadeEbg(jTxtUnidade_ebg.getText());
         produtoEbg.setMassaEbg(jCboMassa_ebg.getSelectedIndex());
         produtoEbg.setModoEbg(jCboModo_ebg.getSelectedIndex());
@@ -50,7 +50,7 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
         
         jTxtCodigo_ebg.setText(id);
         jCboValorunit_ebg.setSelectedItem(produtoEbg.getValorunitEbg());
-        jCboSabor_ebg.setSelectedIndex(produtoEbg.getSaborEbg());
+        jTxtSabor_ebg.setText(produtoEbg.getSaborEbg());
         jTxtUnidade_ebg.setText(produtoEbg.getUnidadeEbg());
         jCboMassa_ebg.setSelectedIndex(produtoEbg.getMassaEbg());
         jCboModo_ebg.setSelectedIndex(produtoEbg.getModoEbg());
@@ -86,7 +86,7 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
         jBtnOk_ebg = new javax.swing.JButton();
         jBtnCancelar_ebg = new javax.swing.JButton();
         jCboValorunit_ebg = new javax.swing.JComboBox<>();
-        jCboSabor_ebg = new javax.swing.JComboBox<>();
+        jTxtSabor_ebg = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -114,8 +114,8 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
 
         jLabel8.setText("Massa");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel1.setLayout(new java.awt.FlowLayout(4));
 
         jBtnOk_ebg.setText("OK");
         jBtnOk_ebg.addActionListener(new java.awt.event.ActionListener() {
@@ -134,8 +134,6 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
         jPanel1.add(jBtnCancelar_ebg);
 
         jCboValorunit_ebg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P 2,50", "M 5,00", "G 10,00", "GG 15,00" }));
-
-        jCboSabor_ebg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carne", "Frango", "Palmito", "Pizza", "Queijo" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,8 +163,8 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
                     .addComponent(jCboTamanho_ebg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCboSabor_ebg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                    .addComponent(jTxtSabor_ebg, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jCboRetirar_ebg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,15 +185,15 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jTxtCodigo_ebg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCboValorunit_ebg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jCboValorunit_ebg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtSabor_ebg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel2)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCboSabor_ebg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -231,7 +229,7 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
         Produto_DAO produto_DAO = new Produto_DAO();
         produto_DAO.insert(produtoEbg);
         
-        Util_ebg.limparCampos(jTxtCodigo_ebg, jCboValorunit_ebg, jCboSabor_ebg, jTxtUnidade_ebg, jCboMassa_ebg, jCboModo_ebg, jCboTamanho_ebg, jCboRetirar_ebg);
+        Util_ebg.limparCampos(jTxtCodigo_ebg, jCboValorunit_ebg, jTxtSabor_ebg, jTxtUnidade_ebg, jCboMassa_ebg, jCboModo_ebg, jCboTamanho_ebg, jCboRetirar_ebg);
         Util_ebg.mensagem("Incluido com sucesso!");
         setVisible(false);
     }//GEN-LAST:event_jBtnOk_ebgActionPerformed
@@ -293,7 +291,6 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jCboMassa_ebg;
     private javax.swing.JComboBox<String> jCboModo_ebg;
     private javax.swing.JComboBox<String> jCboRetirar_ebg;
-    private javax.swing.JComboBox<String> jCboSabor_ebg;
     private javax.swing.JComboBox<String> jCboTamanho_ebg;
     private javax.swing.JComboBox<String> jCboValorunit_ebg;
     private javax.swing.JLabel jLabel1;
@@ -306,6 +303,7 @@ public class JDlgProdutoIA_ebg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTxtCodigo_ebg;
+    private javax.swing.JTextField jTxtSabor_ebg;
     private javax.swing.JTextField jTxtUnidade_ebg;
     // End of variables declaration//GEN-END:variables
 }

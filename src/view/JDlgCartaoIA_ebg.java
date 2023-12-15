@@ -22,6 +22,8 @@ import javax.swing.text.MaskFormatter;
 public class JDlgCartaoIA_ebg extends javax.swing.JDialog {
     private boolean incluindo;
     private MaskFormatter mascaraCPF, mascaraValidade;
+    CartaoEbg cartao;
+    Cartao_DAO cartao_DAO;
     /**
      * Creates new form JDlgCartaoNovoIA
      */
@@ -230,12 +232,17 @@ public class JDlgCartaoIA_ebg extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtCodigo_ebgActionPerformed
 
     private void jBtnOk_ebgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk_ebgActionPerformed
-    CartaoEbg cartaoEbg = viewBean();
-    Cartao_DAO cartao_DAO = new Cartao_DAO();
-    cartao_DAO.insert(cartaoEbg);
-    
-    Util_ebg.limparCampos(jTxtCodigo_ebg, jTxtNomecompleto_ebg, jFmtCpf_ebg, jTxtNumerocartao_ebg, jTxtCsc_ebg, jFmtValidade_ebg);
+    cartao = viewBean();
+    cartao_DAO = new Cartao_DAO();
+    if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+    cartao_DAO.insert(cartao);
     Util_ebg.mensagem("Incluido com sucesso!");
+    }else {            
+          cartao_DAO.update(cartao);
+          Util_ebg.mensagem("Alterado com sucesso!");
+        }
+    Util_ebg.limparCampos(jTxtCodigo_ebg, jTxtNomecompleto_ebg, jFmtCpf_ebg, jTxtNumerocartao_ebg, jTxtCsc_ebg, jFmtValidade_ebg);
+    
     setVisible(false);
     }//GEN-LAST:event_jBtnOk_ebgActionPerformed
 

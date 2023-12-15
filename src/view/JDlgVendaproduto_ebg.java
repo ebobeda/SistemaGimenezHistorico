@@ -22,18 +22,20 @@ public class JDlgVendaproduto_ebg extends javax.swing.JDialog {
          Venda_DAO venda_DAO;
          JDlgVendaproduto_ebg jDlgVendaproduto_ebg;
          VendaprodutoController_ebg vendaprodutoController_ebg;
+         ProdutoEbg produtoEbg;
     /**
      * Creates new form JDlgVendaproduto_ebg
      */
     public JDlgVendaproduto_ebg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        produto_DAO = new Produto_DAO();
-        
+        setLocationRelativeTo(null);
+        venda_DAO = new Venda_DAO();
+        Util_ebg.habilitar(false, jTxtTotal_ebg);
         Produto_DAO produto_DAO = new Produto_DAO();
         List listaProd = produto_DAO.listAll();
-        for (int i = 0; i < listaProd.size(); i++) {
-           jCboProduto_ebg.addItem((ProdutoEbg) listaProd.get(i));
+        for (Object item : listaProd) {
+           jCboProduto_ebg.addItem((ProdutoEbg) item);
         }
     }
          public void setTelaAnterior(JDlgVenda_ebg jDlgVenda_ebg) {
@@ -79,6 +81,11 @@ public class JDlgVendaproduto_ebg extends javax.swing.JDialog {
 
         jLabel1.setText("Produto");
 
+        jCboProduto_ebg.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCboProduto_ebgItemStateChanged(evt);
+            }
+        });
         jCboProduto_ebg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCboProduto_ebgActionPerformed(evt);
@@ -96,10 +103,20 @@ public class JDlgVendaproduto_ebg extends javax.swing.JDialog {
                 jTxtQuantidade_ebgActionPerformed(evt);
             }
         });
+        jTxtQuantidade_ebg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTxtQuantidade_ebgKeyReleased(evt);
+            }
+        });
 
         jTxtValorunit_ebg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtValorunit_ebgActionPerformed(evt);
+            }
+        });
+        jTxtValorunit_ebg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTxtValorunit_ebgKeyReleased(evt);
             }
         });
 
@@ -203,6 +220,33 @@ public class JDlgVendaproduto_ebg extends javax.swing.JDialog {
     private void jCboProduto_ebgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboProduto_ebgActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCboProduto_ebgActionPerformed
+
+    private void jTxtValorunit_ebgKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtValorunit_ebgKeyReleased
+        if(jTxtValorunit_ebg.getText().isEmpty() == false){
+            double valorunit = Util_ebg.strDouble(jTxtValorunit_ebg.getText());
+            double quantidade = Util_ebg.strInt(jTxtQuantidade_ebg.getText());
+            jTxtTotal_ebg.setText(Util_ebg.doubleStr(quantidade * valorunit));
+        }   else{
+            jTxtTotal_ebg.setText("0");
+            }
+    }//GEN-LAST:event_jTxtValorunit_ebgKeyReleased
+
+    private void jTxtQuantidade_ebgKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtQuantidade_ebgKeyReleased
+        if(jTxtQuantidade_ebg.getText().isEmpty() == false){
+            double valorunit = Util_ebg.strDouble(jTxtValorunit_ebg.getText());
+            double quantidade = Util_ebg.strInt(jTxtQuantidade_ebg.getText());
+            jTxtTotal_ebg.setText(Util_ebg.doubleStr(quantidade * valorunit));
+        } else{
+        jTxtTotal_ebg.setText("0");
+        }
+    }//GEN-LAST:event_jTxtQuantidade_ebgKeyReleased
+
+    private void jCboProduto_ebgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCboProduto_ebgItemStateChanged
+        jTxtQuantidade_ebg.setText("1");
+        produtoEbg = (ProdutoEbg) jCboProduto_ebg.getSelectedItem();
+        jTxtValorunit_ebg.setText(Util_ebg.doubleStr(produtoEbg.getValorunitEbg()));
+        jTxtTotal_ebg.setText(jTxtValorunit_ebg.getText());
+    }//GEN-LAST:event_jCboProduto_ebgItemStateChanged
 
     /**
      * @param args the command line arguments

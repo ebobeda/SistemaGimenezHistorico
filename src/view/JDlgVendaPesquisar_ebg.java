@@ -16,6 +16,7 @@ import java.util.List;
 public class JDlgVendaPesquisar_ebg extends javax.swing.JDialog {
         private JDlgVenda_ebg jDlgVenda_ebg;
         VendaController_ebg vendaController_ebg;
+        VendaEbg vendaEbg;
     /**
      * Creates new form JDlgVendaPesquisa
      */
@@ -23,7 +24,7 @@ public class JDlgVendaPesquisar_ebg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Consulta de vendas");
+        setTitle("Pesquisa de vendas");
         vendaController_ebg = new VendaController_ebg();
         Venda_DAO venda_DAO = new Venda_DAO();
         List lista = venda_DAO.listAll();
@@ -31,6 +32,10 @@ public class JDlgVendaPesquisar_ebg extends javax.swing.JDialog {
         jTable1.setModel(vendaController_ebg);
     }
 
+    
+    public void setTelaAnterior(JDlgVenda_ebg jDlgVenda_ebg){
+        this.jDlgVenda_ebg = jDlgVenda_ebg;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,26 +45,26 @@ public class JDlgVendaPesquisar_ebg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBtn2 = new javax.swing.JButton();
-        jBtn1 = new javax.swing.JButton();
+        jBtnCancelar = new javax.swing.JButton();
+        jBtnOk = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/03 - exit.png"))); // NOI18N
-        jBtn2.setText("CANCELAR");
-        jBtn2.addActionListener(new java.awt.event.ActionListener() {
+        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/03 - exit.png"))); // NOI18N
+        jBtnCancelar.setText("CANCELAR");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn2ActionPerformed(evt);
+                jBtnCancelarActionPerformed(evt);
             }
         });
 
-        jBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/05 - ok.png"))); // NOI18N
-        jBtn1.setText("OK");
-        jBtn1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/05 - ok.png"))); // NOI18N
+        jBtnOk.setText("OK");
+        jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn1ActionPerformed(evt);
+                jBtnOkActionPerformed(evt);
             }
         });
 
@@ -82,9 +87,9 @@ public class JDlgVendaPesquisar_ebg extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(159, 159, 159)
-                .addComponent(jBtn1)
+                .addComponent(jBtnOk)
                 .addGap(18, 18, 18)
-                .addComponent(jBtn2)
+                .addComponent(jBtnCancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -97,26 +102,26 @@ public class JDlgVendaPesquisar_ebg extends javax.swing.JDialog {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtn1)
-                    .addComponent(jBtn2))
+                    .addComponent(jBtnOk)
+                    .addComponent(jBtnCancelar))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn2ActionPerformed
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-    }//GEN-LAST:event_jBtn2ActionPerformed
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
 
-    private void jBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn1ActionPerformed
+    private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
         int rowSel = jTable1.getSelectedRow();
         VendaEbg vendaEbg = vendaController_ebg.getBean(rowSel);
         jDlgVenda_ebg.beanView(vendaEbg);
         setVisible(false);
-    }//GEN-LAST:event_jBtn1ActionPerformed
+    }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,12 +169,10 @@ public class JDlgVendaPesquisar_ebg extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtn1;
-    private javax.swing.JButton jBtn2;
+    private javax.swing.JButton jBtnCancelar;
+    private javax.swing.JButton jBtnOk;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-public void setTelaAnterior(JDlgVenda_ebg jDlgVenda_ebg) {
-        this.jDlgVenda_ebg = jDlgVenda_ebg;
-    }
+
 }

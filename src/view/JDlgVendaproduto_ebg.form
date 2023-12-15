@@ -117,6 +117,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCboProduto_ebgItemStateChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCboProduto_ebgActionPerformed"/>
       </Events>
       <AuxValues>
@@ -142,11 +143,13 @@
     <Component class="javax.swing.JTextField" name="jTxtQuantidade_ebg">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtQuantidade_ebgActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtQuantidade_ebgKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtValorunit_ebg">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtValorunit_ebgActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtValorunit_ebgKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtTotal_ebg">

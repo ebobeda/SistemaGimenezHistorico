@@ -21,6 +21,8 @@ import tools.Util_ebg;
  */
 public class JDlgVendedorIA_ebg extends javax.swing.JDialog {
     private MaskFormatter mascaraCPF, mascaraCelular, mascaraDataexpediente, mascaraComissao;
+    VendedorEbg vendedor;
+    Vendedor_DAO vendedor_DAO;
     /**
      * Creates new form JDlgCaixaNovoIA
      */
@@ -248,12 +250,17 @@ public class JDlgVendedorIA_ebg extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtCodigo_ebgActionPerformed
 
     private void jBtnOk_ebgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk_ebgActionPerformed
-    VendedorEbg vendedorEbg = viewBean();
+    vendedor = viewBean();
     Vendedor_DAO vendedor_DAO = new Vendedor_DAO();
-    vendedor_DAO.insert(vendedorEbg);
-    
-    Util_ebg.limparCampos(jTxtCodigo_ebg, jTxtNome_ebg, jFmtCpf_ebg, jFmtCelular_ebg, jFmtDataexpediente_ebg, jTxtComissao_ebg);
+    if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+    vendedor_DAO.insert(vendedor);
     Util_ebg.mensagem("Incluido com sucesso!");
+    }else {            
+          vendedor_DAO.update(vendedor);
+          Util_ebg.mensagem("Alterado com sucesso!");
+        }
+    Util_ebg.limparCampos(jTxtCodigo_ebg, jTxtNome_ebg, jFmtCpf_ebg, jFmtCelular_ebg, jFmtDataexpediente_ebg, jTxtComissao_ebg);
+    
     setVisible(false);
     }//GEN-LAST:event_jBtnOk_ebgActionPerformed
 

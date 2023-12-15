@@ -82,7 +82,7 @@ public class Cartao_DAO extends DAO_Abstract{
     session.beginTransaction();
     Criteria criteria = session.createCriteria(CartaoEbg.class);
     criteria.add(Restrictions.like("nomecompletoEbg","%"+nomecompletoEbg+"%"));
-    criteria.add(Restrictions.ge("cpfEbg",cscEbg));
+    criteria.add(Restrictions.ge("cscEbg",cscEbg));
     List lista = criteria.list();
     session.getTransaction().commit();
     return lista;

@@ -1,5 +1,5 @@
 package bean;
-// Generated 08/12/2023 09:35:32 by Hibernate Tools 4.3.1
+// Generated 08/12/2023 16:53:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -224,6 +224,21 @@ public class ClienteEbg  implements java.io.Serializable {
     public void setComplementoEbg(String complementoEbg) {
         this.complementoEbg = complementoEbg;
     }
+    @Override
+     public String toString() {
+     return nomeEbg;
+     }
+     
+     @Override
+      public boolean equals (Object object){
+      if(object instanceof ClienteEbg){
+      ClienteEbg clienteEbg = (ClienteEbg) object;
+        if(this.getIdclienteEbg() == clienteEbg.getIdclienteEbg())
+            return true;
+            }return false;
+        }
+         
 }
+
 
 

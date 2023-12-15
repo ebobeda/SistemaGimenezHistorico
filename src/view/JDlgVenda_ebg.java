@@ -12,6 +12,7 @@ import bean.VendedorEbg;
 import dao.Cliente_DAO;
 import dao.Venda_DAO;
 import dao.Vendaproduto_DAO;
+import dao.Vendedor_DAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,8 +58,13 @@ public class JDlgVenda_ebg extends javax.swing.JDialog {
         List listaCli = cliente_DAO.listAll();
         for (int i = 0; i < listaCli.size(); i++) {
         jCboCliente_ebg.addItem((ClienteEbg) listaCli.get(i));
-        
     }
+        Vendedor_DAO vendedor_DAO = new Vendedor_DAO();
+        List listaVend = vendedor_DAO.listAll();
+        for (int i = 0; i < listaVend.size(); i++) {
+        jCboVendedor_ebg.addItem((VendedorEbg) listaVend.get(i));
+        }
+        
         vendaprodutoController_ebg = new VendaprodutoController_ebg();
         List lista = new ArrayList();
         vendaprodutoController_ebg.setList(lista);
@@ -70,10 +76,10 @@ public class JDlgVenda_ebg extends javax.swing.JDialog {
             Logger.getLogger(JDlgVenda_ebg.class.getName()).log(Level.SEVERE, null, ex);
         }
          jFmtData_ebg.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
+    
     }
-
     public VendaEbg viewBean() {
-        VendaEbg vendaEbg = new VendaEbg();
+         vendaEbg = new VendaEbg();
         
         vendaEbg.setIdvendaEbg(Util_ebg.strInt(jTxtVenda_ebg.getText()));
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -90,15 +96,19 @@ public class JDlgVenda_ebg extends javax.swing.JDialog {
         return vendaEbg;
     }
     
-    public void beanView(VendaEbg vendaEbg){
-        String id = String.valueOf(vendaEbg.getIdvendaEbg());
+    public void beanView(VendaEbg venda){
+        vendaEbg = venda;
         
-        jTxtVenda_ebg.setText(id);
+        jTxtVenda_ebg.setText(String.valueOf(vendaEbg.getIdvendaEbg()));
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         jFmtData_ebg.setText(formato.format (vendaEbg.getDataEbg()));
         jCboCliente_ebg.setSelectedItem(vendaEbg.getClienteEbg());
         jCboVendedor_ebg.setSelectedItem(vendaEbg.getVendedorEbg());
         jTxtTotal_ebg.setText(Util_ebg.doubleStr(vendaEbg.getTotalvendaEbg()));
+        
+        vendaproduto_DAO = new Vendaproduto_DAO();
+        List listaProd = (List) vendaproduto_DAO.listProduto(vendaEbg);
+        vendaprodutoController_ebg.setList(listaProd);
     }
     
     public int getSelectedRowProd() {
@@ -382,7 +392,7 @@ public class JDlgVenda_ebg extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnExcluirProd_ebgActionPerformed
 
     private void jBtnAlterar_ebgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterar_ebgActionPerformed
-        Util_ebg.habilitar(true, jBtnConfirmar_ebg, jBtnCancelar_ebg, jTxtVenda_ebg, jFmtData_ebg, jCboVendedor_ebg, jCboCliente_ebg, jTxtTotal_ebg);
+        Util_ebg.habilitar(true, jBtnIncluirProd_ebg,jBtnAlterarProd_ebg, jBtnExcluirProd_ebg,jBtnConfirmar_ebg, jBtnCancelar_ebg, jTxtVenda_ebg, jFmtData_ebg, jCboVendedor_ebg, jCboCliente_ebg, jTxtTotal_ebg);
         if (vendaEbg != null) {
             incluindo = false;
         } else {
@@ -414,6 +424,7 @@ public class JDlgVenda_ebg extends javax.swing.JDialog {
 
         if (incluindo == true) {
             venda_DAO.insert(vendaEbg);
+            vendaproduto_DAO = new Vendaproduto_DAO();
             for (int linha = 0; linha < jTable1.getRowCount(); linha++) {
                 vendaprodutoEbg = vendaprodutoController_ebg.getBean(linha);
                 vendaprodutoEbg.setVendaEbg(vendaEbg);
@@ -421,16 +432,18 @@ public class JDlgVenda_ebg extends javax.swing.JDialog {
             }
         } else {
             venda_DAO.update(vendaEbg);
+            vendaproduto_DAO = new Vendaproduto_DAO();
             for (int linha = 0; linha < jTable1.getRowCount(); linha++) {
                 vendaprodutoEbg = vendaprodutoController_ebg.getBean(linha);
                 vendaprodutoEbg.setVendaEbg(vendaEbg);
-                this.vendaproduto_DAO.update(vendaprodutoEbg);
+                vendaproduto_DAO.insert(vendaprodutoEbg);
             }
         }
+        
         vendaprodutoController_ebg.setList(new ArrayList());
         vendaEbg = null;
-        Util_ebg.habilitar(true, jBtnIncluirProd_ebg, jBtnAlterarProd_ebg, jBtnExcluirProd_ebg, jBtnConfirmar_ebg, jBtnAlterar_ebg, jBtnExcluir_ebg, jBtnCancelar_ebg, jTxtVenda_ebg, jFmtData_ebg, jCboVendedor_ebg, jCboCliente_ebg, jTxtTotal_ebg);
-        Util_ebg.habilitar(false, jBtnIncluir_ebg, jBtnPesquisar_ebg);
+        Util_ebg.habilitar(true, jBtnIncluir_ebg, jBtnPesquisar_ebg);
+        Util_ebg.habilitar(false, jBtnIncluirProd_ebg, jBtnAlterarProd_ebg, jBtnExcluirProd_ebg, jBtnConfirmar_ebg, jBtnAlterar_ebg, jBtnExcluir_ebg, jBtnCancelar_ebg, jTxtVenda_ebg, jFmtData_ebg, jCboVendedor_ebg, jCboCliente_ebg, jTxtTotal_ebg);
         Util_ebg.limparCampos(jTxtVenda_ebg, jFmtData_ebg, jCboVendedor_ebg, jCboCliente_ebg, jTxtTotal_ebg);
         
     }//GEN-LAST:event_jBtnConfirmar_ebgActionPerformed

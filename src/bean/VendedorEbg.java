@@ -1,5 +1,5 @@
 package bean;
-// Generated 08/12/2023 09:35:32 by Hibernate Tools 4.3.1
+// Generated 08/12/2023 16:53:50 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -104,6 +104,19 @@ public class VendedorEbg  implements java.io.Serializable {
     public void setComissaoEbg(double comissaoEbg) {
         this.comissaoEbg = comissaoEbg;
     }
+    @Override
+     public String toString() {
+     return nomeEbg;
+     }
+     
+     @Override
+      public boolean equals (Object object){
+      if(object instanceof VendedorEbg){
+      VendedorEbg vendedorEbg = (VendedorEbg) object;
+        if(this.getIdvendedorEbg() == vendedorEbg.getIdvendedorEbg())
+            return true;
+            }return false;
+        }
+         
 }
-
 

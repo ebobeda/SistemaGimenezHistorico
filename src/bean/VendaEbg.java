@@ -1,5 +1,5 @@
 package bean;
-// Generated 08/12/2023 09:35:32 by Hibernate Tools 4.3.1
+// Generated 08/12/2023 16:53:50 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -43,7 +43,6 @@ public class VendaEbg  implements java.io.Serializable {
         this.vendedorEbg = vendedorEbg;
         this.dataEbg = dataEbg;
     }
-    
      @Id 
 
     
@@ -56,7 +55,7 @@ public class VendaEbg  implements java.io.Serializable {
         this.idvendaEbg = idvendaEbg;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="cliente_ebg", nullable=false)
     public ClienteEbg getClienteEbg() {
         return this.clienteEbg;
@@ -66,7 +65,7 @@ public class VendaEbg  implements java.io.Serializable {
         this.clienteEbg = clienteEbg;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="vendedor_ebg", nullable=false)
     public VendedorEbg getVendedorEbg() {
         return this.vendedorEbg;

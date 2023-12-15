@@ -1,5 +1,5 @@
 package bean;
-// Generated 08/12/2023 09:35:32 by Hibernate Tools 4.3.1
+// Generated 08/12/2023 16:53:50 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -44,7 +44,7 @@ public class ProdutoEbg  implements java.io.Serializable {
         this.tamanhoEbg = tamanhoEbg;
         this.retirarEbg = retirarEbg;
     }
-   
+    
      @Id 
 
     
@@ -129,17 +129,16 @@ public class ProdutoEbg  implements java.io.Serializable {
     @Override
      public String toString() {
     return saborEbg;
-}
- @Override
+     }
+     
+     @Override
       public boolean equals (Object object){
-      if(object instanceof ProdutoEbg){
+      if(object instanceof ClienteEbg){
       ProdutoEbg produtoEbg = (ProdutoEbg) object;
-        if(this.getIdprodutoEbg()== produtoEbg.getIdprodutoEbg())
+        if(this.getIdprodutoEbg() == produtoEbg.getIdprodutoEbg())
             return true;
-                }         
-                return false;
-            }
+            }return false;
+        }
          
 }
-
 

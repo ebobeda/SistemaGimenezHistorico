@@ -5,6 +5,8 @@
  */
 package dao;
 
+import bean.VendaEbg;
+import bean.VendaprodutoEbg;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -57,6 +59,15 @@ public class Vendaproduto_DAO extends DAO_Abstract{
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list
+    }
+    
+    public List listProduto(VendaEbg vendaEbg){
+       session.beginTransaction();
+        Criteria criteria = session.createCriteria(VendaprodutoEbg.class);
+        criteria.add( Restrictions.eq("vendaEbg", vendaEbg));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
     }
     
 }

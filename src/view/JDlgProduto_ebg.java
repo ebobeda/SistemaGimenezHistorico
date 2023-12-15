@@ -20,23 +20,23 @@ public class JDlgProduto_ebg extends javax.swing.JDialog {
      */
     ProdutoEbg produtoEbg;
     Produto_DAO produto_DAO;
-    ProdutoController_ebg produtoControle_ebg;
-    JDlgProdutoIA_ebg jDlgProdutoNovoIA;
+    ProdutoController_ebg produtoController_ebg;
+    JDlgProdutoIA_ebg jDlgProdutoIA_ebg;
     boolean incluindo;
     
     public JDlgProduto_ebg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Inclusão");
+        setTitle("Inclusão de Produtos");
         setLocationRelativeTo(null);
         
-        jDlgProdutoNovoIA = new JDlgProdutoIA_ebg(null, true);
+        jDlgProdutoIA_ebg = new JDlgProdutoIA_ebg(null, true);
         
-        produtoControle_ebg = new ProdutoController_ebg();
+        produtoController_ebg = new ProdutoController_ebg();
         produto_DAO = new  Produto_DAO();
         List lista = produto_DAO.listAll();
-        produtoControle_ebg.setList(lista);
-        jTable1.setModel(produtoControle_ebg);
+        produtoController_ebg.setList(lista);
+        jTable1.setModel(produtoController_ebg);
         
     }
 
@@ -121,27 +121,33 @@ public class JDlgProduto_ebg extends javax.swing.JDialog {
     private void jBtnIncluir_ebgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluir_ebgActionPerformed
         // TODO add your handling code here:
         incluindo = true;
-        jDlgProdutoNovoIA.setTitle("Incluir");
-        jDlgProdutoNovoIA.setVisible(true);
+        jDlgProdutoIA_ebg.setTitle("Incluir");
+        jDlgProdutoIA_ebg.setVisible(true);
         List lista = produto_DAO.listAll();
-        produtoControle_ebg.setList(lista);
+        produtoController_ebg.setList(lista);
     }//GEN-LAST:event_jBtnIncluir_ebgActionPerformed
 
     private void jBtnAlterar_ebgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterar_ebgActionPerformed
         // TODO add your handling code here:
-        jDlgProdutoNovoIA.setTitle("Alterar");
-        jDlgProdutoNovoIA.setVisible(true);
+        jDlgProdutoIA_ebg.setTitle("Alterar");
+        int sel = jTable1.getSelectedRow();
+        ProdutoEbg produtoEbg = produtoController_ebg.getBean(sel);
+        jDlgProdutoIA_ebg.beanView(produtoEbg);
+        
+        jDlgProdutoIA_ebg.setVisible(true);
+        List lista = produto_DAO.listAll();
+        produtoController_ebg.setList(lista);
     }//GEN-LAST:event_jBtnAlterar_ebgActionPerformed
 
     private void jBtnExcluir_ebgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluir_ebgActionPerformed
         // TODO add your handling code here:
         if (Util_ebg.perguntar("Deseja excluir este produto?") == true){
         int sel = jTable1.getSelectedRow();
-        produtoEbg = produtoControle_ebg.getBean(sel);
+        produtoEbg = produtoController_ebg.getBean(sel);
         produto_DAO.delete(produtoEbg);
            
         List lista = produto_DAO.listAll();
-        produtoControle_ebg.setList(lista);
+        produtoController_ebg.setList(lista);
         Util_ebg.mensagem("Registro excluido"); 
         } else{
            Util_ebg.mensagem("Exclusão cancelada");
